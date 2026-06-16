@@ -1,0 +1,18 @@
+:root {
+  --forest-950: #08261d;
+  --forest-900: #0d3428;
+  --forest-800: #174b3a;
+  --gold-500: #c99a3d;
+  --gold-300: #e2bf74;
+  --ivory: #f7f4ed;
+  --paper: #fffdf9;
+  --mist: #e9ece9;
+  --ink: #15201b;
+  --muted: #66706b;
+  --border: #d7dbd7;
+  --serif: "Iowan Old Style", "Baskerville", "Times New Roman", serif;
+  --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --shadow: 0 18px 50px rgba(8, 38, 29, 0.1);
+  --radius: 3px;
+  --container: 1240px;
+}
