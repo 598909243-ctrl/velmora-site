@@ -18,6 +18,10 @@ const makeProduct = ({
   featured = false,
   availability = 'custom',
   price,
+  useCases = ['Retail assortment', 'Wholesale sourcing'],
+  customOptions = ['Logo print', 'Fabric color', 'Sleeve packaging'],
+  badges,
+  stockType,
   diameter = '105 cm',
   weight = '480 g',
   frame = 'Fiberglass and steel',
@@ -44,6 +48,18 @@ const makeProduct = ({
   leadTime: '25–35 days after sample approval',
   featured,
   availability,
+  stockType: stockType || (availability === 'ready-stock' ? 'Ready-stock inquiry' : 'Custom program'),
+  badges: badges || [
+    availability === 'ready-stock' ? 'Ready-stock inquiry' : 'OEM ready',
+    opening,
+  ],
+  useCases,
+  customOptions,
+  comparisonSpecs: {
+    Diameter: diameter,
+    MOQ: moq,
+    LeadTime: '25–35 days',
+  },
   price,
 })
 
@@ -61,6 +77,9 @@ export const products = [
     diameter: '98 cm',
     weight: '380 g',
     opening: 'Automatic open and close',
+    useCases: ['Travel retail', 'Corporate commuting', 'Ready-stock inquiry'],
+    customOptions: ['Logo on canopy', 'Sleeve color', 'Handle color'],
+    badges: ['Travel size', 'Auto open/close'],
   }),
   makeProduct({
     slug: 'metro-fold-auto',
@@ -72,6 +91,9 @@ export const products = [
     availability: 'ready-stock',
     price: 'From US$21',
     diameter: '102 cm',
+    useCases: ['Urban retail', 'Office gifting', 'Wholesale assortment'],
+    customOptions: ['Logo canopy panel', 'Pantone trim', 'Retail hangtag'],
+    badges: ['City ready', 'Auto open'],
   }),
   makeProduct({
     slug: 'heritage-stick',
@@ -83,6 +105,9 @@ export const products = [
     featured: true,
     opening: 'Manual',
     diameter: '110 cm',
+    useCases: ['Hospitality retail', 'Boutique display', 'Premium gifting'],
+    customOptions: ['Wood handle finish', 'Canopy color', 'Gift sleeve'],
+    badges: ['Classic silhouette', 'Manual open'],
   }),
   makeProduct({
     slug: 'city-cane',
@@ -92,6 +117,9 @@ export const products = [
     image: imagePath('images/products/stick-2.avif'),
     colors: ['Camel', 'Navy', 'Black'],
     opening: 'Automatic open',
+    useCases: ['Hotel programs', 'Department stores', 'Executive gifts'],
+    customOptions: ['Curved handle color', 'Logo woven label', 'Gift packaging'],
+    badges: ['Full length', 'Hospitality fit'],
   }),
   makeProduct({
     slug: 'fairway-pro',
@@ -105,6 +133,9 @@ export const products = [
     weight: '720 g',
     frame: 'Double-canopy fiberglass',
     moq: '200 pcs for customization',
+    useCases: ['Golf clubs', 'Outdoor events', 'Sponsor campaigns'],
+    customOptions: ['Large canopy logo', 'Grip color', 'Storm vent panel'],
+    badges: ['Wide canopy', 'Wind-flex frame'],
   }),
   makeProduct({
     slug: 'clubhouse-double-canopy',
@@ -117,6 +148,9 @@ export const products = [
     weight: '760 g',
     frame: 'Vented fiberglass double canopy',
     moq: '200 pcs for customization',
+    useCases: ['Tournament gifts', 'Club retail', 'Team merchandise'],
+    customOptions: ['Double-canopy colorway', 'Sleeve print', 'Carton label'],
+    badges: ['Double canopy', 'Event ready'],
   }),
   makeProduct({
     slug: 'dino-day-kids',
@@ -130,6 +164,9 @@ export const products = [
     weight: '260 g',
     frame: 'Rounded-tip fiberglass',
     opening: 'Safety manual',
+    useCases: ['Kids retail', 'School programs', 'Family gifts'],
+    customOptions: ['Printed character panel', 'Name label', 'Safety tip color'],
+    badges: ['Child friendly', 'Rounded tips'],
   }),
   makeProduct({
     slug: 'color-pop-kids',
@@ -141,6 +178,9 @@ export const products = [
     diameter: '75 cm',
     weight: '275 g',
     opening: 'Safety manual',
+    useCases: ['Toy stores', 'Seasonal retail', 'School campaigns'],
+    customOptions: ['Pantone canopy', 'Reflective trim', 'Retail card'],
+    badges: ['Bright visibility', 'Safety manual'],
   }),
   makeProduct({
     slug: 'signature-gift-set',
@@ -151,6 +191,9 @@ export const products = [
     colors: ['Forest/Gold', 'Navy/Silver', 'Custom'],
     featured: true,
     moq: '300 sets for customization',
+    useCases: ['Corporate gifts', 'Brand launches', 'Premium promotions'],
+    customOptions: ['Gift box artwork', 'Sleeve print', 'Logo plate'],
+    badges: ['Gift boxed', 'Brand program'],
   }),
   makeProduct({
     slug: 'event-logo-fold',
@@ -162,6 +205,9 @@ export const products = [
     moq: '500 pcs for customization',
     diameter: '96 cm',
     weight: '340 g',
+    useCases: ['Events', 'Promotional campaigns', 'Trade shows'],
+    customOptions: ['Full-panel print', 'Campaign sleeve', 'Bulk carton mark'],
+    badges: ['Promo ready', 'Custom Pantone'],
   }),
 ]
 

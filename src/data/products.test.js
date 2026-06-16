@@ -20,3 +20,19 @@ test('finds products by slug', () => {
   expect(findProductBySlug(products[0].slug)).toEqual(products[0])
   expect(findProductBySlug('missing')).toBeUndefined()
 })
+
+test('each product exposes buyer guidance metadata', () => {
+  for (const product of products) {
+    expect(product.useCases.length).toBeGreaterThanOrEqual(2)
+    expect(product.customOptions.length).toBeGreaterThanOrEqual(3)
+    expect(product.badges.length).toBeGreaterThanOrEqual(1)
+    expect(product.stockType).toMatch(/Ready-stock|Custom program/)
+    expect(product.comparisonSpecs).toEqual(
+      expect.objectContaining({
+        Diameter: expect.any(String),
+        MOQ: expect.any(String),
+        LeadTime: expect.any(String),
+      }),
+    )
+  }
+})

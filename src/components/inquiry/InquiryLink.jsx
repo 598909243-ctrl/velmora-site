@@ -5,10 +5,11 @@ export default function InquiryLink({ intent, product, children, className = 'bu
   const navigate = useNavigate()
   const { setSource } = useInquiry()
   return (
-    <button
+    <a
       className={className}
-      type="button"
-      onClick={() => {
+      href="/contact"
+      onClick={(event) => {
+        event.preventDefault()
         setSource({
           intent,
           productSlug: product?.slug || '',
@@ -19,6 +20,6 @@ export default function InquiryLink({ intent, product, children, className = 'bu
       }}
     >
       {children}
-    </button>
+    </a>
   )
 }
