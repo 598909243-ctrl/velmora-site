@@ -1,13 +1,13 @@
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import { InquiryProvider } from '../features/inquiry/InquiryContext'
 import AppRoutes from './AppRoutes'
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <InquiryProvider>
         <AppRoutes />
       </InquiryProvider>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
