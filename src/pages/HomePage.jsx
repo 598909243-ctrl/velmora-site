@@ -5,6 +5,8 @@ import Seo from '../components/Seo'
 import { categories, products } from '../data/products'
 import { capabilities, customSteps } from '../data/siteContent'
 
+const asset = (path) => `${import.meta.env.BASE_URL}${path}`
+
 export default function HomePage() {
   const featured = products.filter((product) => product.featured).slice(0, 4)
   return (
@@ -12,7 +14,7 @@ export default function HomePage() {
       <Seo title="Umbrellas for Retail and Custom Sourcing" description="Explore VELMORA ready-stock umbrellas and flexible OEM and ODM sourcing programs." />
       <main id="main-content">
         <section className="home-hero">
-          <img src="/images/hero-umbrella.avif" alt="Forest green umbrella on a rain-washed city street" width="1600" height="900" />
+          <img src={asset('images/hero-umbrella.avif')} alt="Forest green umbrella on a rain-washed city street" width="1600" height="900" />
           <div className="hero-content">
             <h1>Built for Every Sky</h1>
             <p className="hero-tagline">Weather, Well Made</p>
@@ -27,7 +29,7 @@ export default function HomePage() {
         <section className="category-rail section">
           {categories.map((category, index) => (
             <Link key={category} to="/products" className="category-item">
-              <img src={`/images/categories/category-${index + 1}.avif`} alt={`${category} category`} width="500" height="560" loading="lazy" />
+              <img src={asset(`images/categories/category-${index + 1}.avif`)} alt={`${category} category`} width="500" height="560" loading="lazy" />
               <span>{category}</span>
             </Link>
           ))}
@@ -49,7 +51,7 @@ export default function HomePage() {
             <InquiryLink intent="oem">Request a Custom Quote</InquiryLink>
           </div>
           <div className="oem-media">
-            <img src="/images/custom-detail.avif" alt="Umbrella material, frame, branding, and packaging details" width="1000" height="760" loading="lazy" />
+            <img src={asset('images/custom-detail.avif')} alt="Umbrella material, frame, branding, and packaging details" width="1000" height="760" loading="lazy" />
           </div>
           <div className="capability-row">
             {capabilities.map(([title, text]) => <div key={title}><h3>{title}</h3><p>{text}</p></div>)}
