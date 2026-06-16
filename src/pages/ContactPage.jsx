@@ -19,7 +19,7 @@ export default function ContactPage() {
               <a href={whatsappUrl()} target="_blank" rel="noreferrer">Continue on WhatsApp</a>
               <a href={`mailto:${siteConfig.email}`}>Email {siteConfig.email}</a>
             </div>
-            <p className="demo-copy">Placeholder contact details. Replace before publishing.</p>
+            <p className="demo-copy">Direct contact: {siteConfig.email} / WhatsApp {siteConfig.whatsappDisplay}</p>
           </div>
           <InquiryForm initialSource={source} />
         </section>

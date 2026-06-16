@@ -24,3 +24,13 @@ test('custom page lists the five-step process', () => {
     expect(screen.getByText(step)).toBeInTheDocument()
   }
 })
+
+test('contact page exposes the real email and WhatsApp link', () => {
+  renderWithApp('/contact')
+  expect(screen.getByRole('link', { name: /email sales01@krbrella\.com/i })).toHaveAttribute('href', 'mailto:sales01@krbrella.com')
+  expect(screen.getByRole('link', { name: /continue on whatsapp/i })).toHaveAttribute(
+    'href',
+    expect.stringContaining('https://wa.me/8615960350366'),
+  )
+  expect(screen.queryByText(/placeholder contact details/i)).not.toBeInTheDocument()
+})
