@@ -36,3 +36,16 @@ test('each product exposes buyer guidance metadata', () => {
     )
   }
 })
+
+test('includes the uploaded KR catalogue products with styled catalog images', () => {
+  const catalogProducts = products.filter((product) => product.slug.startsWith('kr-catalog-'))
+  expect(catalogProducts.length).toBeGreaterThanOrEqual(150)
+  expect(catalogProducts[0]).toEqual(
+    expect.objectContaining({
+      slug: 'kr-catalog-part1-01-a',
+      category: 'Folding Umbrellas',
+    }),
+  )
+  expect(catalogProducts.every((product) => product.images[0].includes('/images/catalog/'))).toBe(true)
+  expect(filterProducts('Folding Umbrellas').some((product) => product.slug.startsWith('kr-catalog-part1'))).toBe(true)
+})
