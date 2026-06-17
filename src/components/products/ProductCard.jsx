@@ -5,7 +5,7 @@ export default function ProductCard({ product }) {
   return (
     <article className="product-card" data-testid="product-card">
       <Link className="product-image-wrap" to={`/products/${product.slug}`}>
-        <img src={product.images[0]} alt={`${product.name} umbrella`} loading="lazy" width="720" height="820" />
+        <img src={product.images[0]} alt={`${product.name} product`} loading="lazy" width="720" height="820" />
         <span>{product.stockType}</span>
       </Link>
       <div className="product-card-body">
