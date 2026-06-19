@@ -7,7 +7,6 @@ test('contains all five umbrella categories', () => {
     'Golf Umbrellas',
     'Kids Umbrellas',
     'Gift & Promotional Umbrellas',
-    'Rainwear',
   ])
 })
 
@@ -38,25 +37,15 @@ test('each product exposes buyer guidance metadata', () => {
   }
 })
 
-test('includes uploaded photo products with styled local images', () => {
-  const uploadedProducts = products.filter((product) => product.slug.startsWith('kr-photo-'))
-  expect(uploadedProducts.length).toBeGreaterThanOrEqual(6)
-  expect(uploadedProducts.map((product) => product.slug)).toEqual(
-    expect.arrayContaining([
-      'kr-photo-feather-umbrella',
-      'kr-photo-ultralight-folding-umbrella',
-      'kr-photo-two-fold-auto-umbrella',
-      'kr-photo-ross-umbrella',
-      'kr-photo-rainwear',
-      'kr-photo-umbrella-diagram',
-    ]),
-  )
-  expect(findProductBySlug('kr-photo-rainwear')).toEqual(
+test('includes the uploaded KR catalogue products with styled catalog images', () => {
+  const catalogProducts = products.filter((product) => product.slug.startsWith('kr-catalog-'))
+  expect(catalogProducts.length).toBeGreaterThanOrEqual(150)
+  expect(catalogProducts[0]).toEqual(
     expect.objectContaining({
-      category: 'Rainwear',
+      slug: 'kr-catalog-part1-01-a',
+      category: 'Folding Umbrellas',
     }),
   )
-  expect(uploadedProducts.every((product) => product.images[0].includes('/images/uploads/'))).toBe(true)
-  expect(findProductBySlug('kr-photo-ross-umbrella').images.length).toBeGreaterThanOrEqual(10)
-  expect(filterProducts('Rainwear').some((product) => product.slug === 'kr-photo-rainwear')).toBe(true)
+  expect(catalogProducts.every((product) => product.images[0].includes('/images/catalog/'))).toBe(true)
+  expect(filterProducts('Folding Umbrellas').some((product) => product.slug.startsWith('kr-catalog-part1'))).toBe(true)
 })

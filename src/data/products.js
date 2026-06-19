@@ -1,4 +1,4 @@
-import { uploadedProductConfigs } from './uploadedProducts'
+import { catalogProductConfigs } from './catalogProducts'
 
 export const categories = [
   'Folding Umbrellas',
@@ -6,7 +6,6 @@ export const categories = [
   'Golf Umbrellas',
   'Kids Umbrellas',
   'Gift & Promotional Umbrellas',
-  'Rainwear',
 ]
 
 const imagePath = (path) => `${import.meta.env.BASE_URL}${path}`
@@ -17,7 +16,6 @@ const makeProduct = ({
   category,
   tagline,
   image,
-  images,
   colors,
   featured = false,
   availability = 'custom',
@@ -31,8 +29,6 @@ const makeProduct = ({
   frame = 'Fiberglass and steel',
   opening = 'Automatic open',
   moq = '100 pcs for customization',
-  leadTime = '25–35 days after sample approval',
-  specifications,
   description,
   features,
 }) => ({
@@ -42,7 +38,7 @@ const makeProduct = ({
   tagline,
   description: description || `${tagline} Designed as a flexible demonstration model for global retail, wholesale, and branded programs.`,
   features: features || ['Water-repellent 190T pongee', 'Wind-flex frame', 'Custom color and logo options'],
-  specifications: specifications || {
+  specifications: {
     Diameter: diameter,
     Weight: weight,
     Frame: frame,
@@ -51,9 +47,9 @@ const makeProduct = ({
     Opening: opening,
   },
   colors,
-  images: images || [image],
+  images: [image],
   moq,
-  leadTime,
+  leadTime: '25–35 days after sample approval',
   featured,
   availability,
   stockType: stockType || (availability === 'ready-stock' ? 'Ready-stock inquiry' : 'Custom program'),
@@ -219,14 +215,14 @@ const sampleProducts = [
   }),
 ]
 
-const uploadedProducts = uploadedProductConfigs.map((config) =>
+const catalogProducts = catalogProductConfigs.map((config) =>
   makeProduct({
     ...config,
-    images: config.images.map(imagePath),
+    image: imagePath(config.image),
   }),
 )
 
-export const products = [...sampleProducts, ...uploadedProducts]
+export const products = [...sampleProducts, ...catalogProducts]
 
 export const filterProducts = (category) =>
   !category || category === 'All'

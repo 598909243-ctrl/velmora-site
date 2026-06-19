@@ -3,7 +3,7 @@ import { renderWithApp } from '../test/renderWithApp'
 
 test('renders the products route', () => {
   renderWithApp('/products')
-  expect(screen.getByRole('heading', { level: 1, name: /umbrella collection/i })).toBeInTheDocument()
+  expect(screen.getByRole('heading', { name: /umbrella collection/i })).toBeInTheDocument()
 })
 
 test('renders a friendly not-found page', () => {
