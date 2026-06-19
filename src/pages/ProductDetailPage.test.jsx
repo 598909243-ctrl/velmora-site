@@ -11,9 +11,19 @@ test('shows product specifications for a valid slug', () => {
 test('product detail guides retail and bulk buyers', () => {
   renderWithApp(`/products/${products[0].slug}`)
   expect(screen.getByText('Quote-ready overview')).toBeInTheDocument()
+  expect(screen.getByRole('heading', { name: /At a glance/i })).toBeInTheDocument()
   expect(screen.getByRole('heading', { name: /Best for/i })).toBeInTheDocument()
   expect(screen.getByRole('heading', { name: /Custom options/i })).toBeInTheDocument()
+  expect(screen.getByRole('heading', { name: /Quote brief/i })).toBeInTheDocument()
   expect(screen.getByRole('link', { name: /Request Bulk Quote/i })).toHaveAttribute('href', '/contact')
+})
+
+test('product gallery renders unique product images once', () => {
+  const product = products.find((item) => item.slug === 'velmora-original-compact-folding-umbrella')
+  renderWithApp(`/products/${product.slug}`)
+
+  expect(screen.getAllByAltText(`${product.name} view 1`)).toHaveLength(1)
+  expect(screen.queryByText(/Additional views/i)).not.toBeInTheDocument()
 })
 
 test('shows product not found for an invalid slug', () => {
