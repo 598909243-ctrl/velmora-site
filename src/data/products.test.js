@@ -36,3 +36,22 @@ test('each product exposes buyer guidance metadata', () => {
     )
   }
 })
+
+test('includes a compact original umbrella image collection', () => {
+  const generatedUmbrellas = products.filter((product) => product.slug.startsWith('velmora-original-'))
+
+  expect(generatedUmbrellas).toHaveLength(8)
+  expect(generatedUmbrellas.map((product) => product.slug)).toEqual(
+    expect.arrayContaining([
+      'velmora-original-compact-folding-umbrella',
+      'velmora-original-automatic-folding-umbrella',
+      'velmora-original-classic-stick-umbrella',
+      'velmora-original-golf-umbrella',
+      'velmora-original-kids-umbrella',
+    ]),
+  )
+  expect(generatedUmbrellas.every((product) => product.category !== 'Rainwear')).toBe(true)
+  expect(generatedUmbrellas.every((product) => product.images[0].includes('/images/generated/umbrellas/'))).toBe(true)
+  expect(findProductBySlug('velmora-original-compact-folding-umbrella').images.length).toBe(1)
+  expect(filterProducts('Golf Umbrellas').some((product) => product.slug === 'velmora-original-golf-umbrella')).toBe(true)
+})

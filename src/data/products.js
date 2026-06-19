@@ -1,3 +1,5 @@
+import { generatedUmbrellaProductConfigs } from './generatedUmbrellaProducts'
+
 export const categories = [
   'Folding Umbrellas',
   'Stick Umbrellas',
@@ -14,10 +16,14 @@ const makeProduct = ({
   category,
   tagline,
   image,
+  images,
   colors,
   featured = false,
   availability = 'custom',
   price,
+  description,
+  features,
+  specifications,
   useCases = ['Retail assortment', 'Wholesale sourcing'],
   customOptions = ['Logo print', 'Fabric color', 'Sleeve packaging'],
   badges,
@@ -27,14 +33,17 @@ const makeProduct = ({
   frame = 'Fiberglass and steel',
   opening = 'Automatic open',
   moq = '100 pcs for customization',
+  leadTime = '25-35 days after sample approval',
 }) => ({
   slug,
   name,
   category,
   tagline,
-  description: `${tagline} Designed as a flexible demonstration model for global retail, wholesale, and branded programs.`,
-  features: ['Water-repellent 190T pongee', 'Wind-flex frame', 'Custom color and logo options'],
-  specifications: {
+  description:
+    description ||
+    `${tagline} Designed as a flexible demonstration model for global retail, wholesale, and branded programs.`,
+  features: features || ['Water-repellent 190T pongee', 'Wind-flex frame', 'Custom color and logo options'],
+  specifications: specifications || {
     Diameter: diameter,
     Weight: weight,
     Frame: frame,
@@ -43,9 +52,9 @@ const makeProduct = ({
     Opening: opening,
   },
   colors,
-  images: [image],
+  images: images || [image],
   moq,
-  leadTime: '25–35 days after sample approval',
+  leadTime,
   featured,
   availability,
   stockType: stockType || (availability === 'ready-stock' ? 'Ready-stock inquiry' : 'Custom program'),
@@ -63,7 +72,7 @@ const makeProduct = ({
   price,
 })
 
-export const products = [
+const sampleProducts = [
   makeProduct({
     slug: 'aero-fold-compact',
     name: 'AeroFold Compact',
@@ -210,6 +219,15 @@ export const products = [
     badges: ['Promo ready', 'Custom Pantone'],
   }),
 ]
+
+const generatedUmbrellaProducts = generatedUmbrellaProductConfigs.map((config) =>
+  makeProduct({
+    ...config,
+    images: config.images.map(imagePath),
+  }),
+)
+
+export const products = [...sampleProducts, ...generatedUmbrellaProducts]
 
 export const filterProducts = (category) =>
   !category || category === 'All'
