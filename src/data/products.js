@@ -1,5 +1,3 @@
-import { catalogProductConfigs } from './catalogProducts'
-
 export const categories = [
   'Folding Umbrellas',
   'Stick Umbrellas',
@@ -29,15 +27,13 @@ const makeProduct = ({
   frame = 'Fiberglass and steel',
   opening = 'Automatic open',
   moq = '100 pcs for customization',
-  description,
-  features,
 }) => ({
   slug,
   name,
   category,
   tagline,
-  description: description || `${tagline} Designed as a flexible demonstration model for global retail, wholesale, and branded programs.`,
-  features: features || ['Water-repellent 190T pongee', 'Wind-flex frame', 'Custom color and logo options'],
+  description: `${tagline} Designed as a flexible demonstration model for global retail, wholesale, and branded programs.`,
+  features: ['Water-repellent 190T pongee', 'Wind-flex frame', 'Custom color and logo options'],
   specifications: {
     Diameter: diameter,
     Weight: weight,
@@ -67,7 +63,7 @@ const makeProduct = ({
   price,
 })
 
-const sampleProducts = [
+export const products = [
   makeProduct({
     slug: 'aero-fold-compact',
     name: 'AeroFold Compact',
@@ -214,15 +210,6 @@ const sampleProducts = [
     badges: ['Promo ready', 'Custom Pantone'],
   }),
 ]
-
-const catalogProducts = catalogProductConfigs.map((config) =>
-  makeProduct({
-    ...config,
-    image: imagePath(config.image),
-  }),
-)
-
-export const products = [...sampleProducts, ...catalogProducts]
 
 export const filterProducts = (category) =>
   !category || category === 'All'
