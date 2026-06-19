@@ -1,6 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
 import InquiryLink from '../components/inquiry/InquiryLink'
-import ProductCard from '../components/products/ProductCard'
 import ProductGallery from '../components/products/ProductGallery'
 import SpecificationsTable from '../components/products/SpecificationsTable'
 import Seo from '../components/Seo'
@@ -114,9 +113,27 @@ export default function ProductDetailPage() {
           <SpecificationsTable specifications={product.specifications} />
         </section>
         {related.length ? (
-          <section className="section">
-            <div className="section-heading"><h2>Related umbrellas</h2></div>
-            <div className="product-grid compact-grid">{related.map((item) => <ProductCard key={item.slug} product={item} />)}</div>
+          <section className="section related-links-section">
+            <div className="section-heading">
+              <div>
+                <p className="section-label">Keep comparing</p>
+                <h2>Related umbrellas</h2>
+              </div>
+              <Link className="text-link" to="/products">View all products</Link>
+            </div>
+            <div className="related-link-grid">
+              {related.map((item) => (
+                <article className="related-link-card" key={item.slug}>
+                  <p className="product-category">{item.category}</p>
+                  <h3><Link to={`/products/${item.slug}`}>{item.name}</Link></h3>
+                  <p>{item.tagline}</p>
+                  <dl className="mini-specs">
+                    <div><dt>MOQ</dt><dd>{item.comparisonSpecs.MOQ}</dd></div>
+                    <div><dt>Lead time</dt><dd>{item.comparisonSpecs.LeadTime}</dd></div>
+                  </dl>
+                </article>
+              ))}
+            </div>
           </section>
         ) : null}
       </main>

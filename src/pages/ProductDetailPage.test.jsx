@@ -24,6 +24,7 @@ test('product gallery renders unique product images once', () => {
 
   expect(screen.getAllByAltText(`${product.name} view 1`)).toHaveLength(1)
   expect(screen.queryByText(/Additional views/i)).not.toBeInTheDocument()
+  expect(screen.queryByTestId('product-card')).not.toBeInTheDocument()
 })
 
 test('shows product not found for an invalid slug', () => {
