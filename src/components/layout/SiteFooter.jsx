@@ -19,6 +19,11 @@ export default function SiteFooter() {
         <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
         <p>WhatsApp {siteConfig.whatsappDisplay}</p>
       </div>
+      <div>
+        <strong>Legal</strong>
+        <Link to="/privacy-policy">Privacy Policy</Link>
+        <Link to="/terms">Terms of Use</Link>
+      </div>
       <p className="footer-note">VELMORA is a concept brand. Replace all sample data before commercial launch.</p>
     </footer>
   )

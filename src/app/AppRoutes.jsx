@@ -8,8 +8,10 @@ import ContactPage from '../pages/ContactPage'
 import CustomPage from '../pages/CustomPage'
 import HomePage from '../pages/HomePage'
 import NotFoundPage from '../pages/NotFoundPage'
+import PrivacyPolicyPage from '../pages/PrivacyPolicyPage'
 import ProductDetailPage from '../pages/ProductDetailPage'
 import ProductsPage from '../pages/ProductsPage'
+import TermsPage from '../pages/TermsPage'
 
 export default function AppRoutes() {
   return (
@@ -24,6 +26,8 @@ export default function AppRoutes() {
         <Route path="/custom" element={<CustomPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/terms" element={<TermsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <SiteFooter />

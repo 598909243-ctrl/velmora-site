@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://598909243-ctrl.github.io/velmora-site/sitemap.xml
